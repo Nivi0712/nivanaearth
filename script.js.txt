@@ -1,0 +1,30 @@
+// Scroll-triggered animation
+const animatedSections = document.querySelectorAll('.animate');
+
+function revealOnScroll() {
+  animatedSections.forEach(section => {
+    const top = section.getBoundingClientRect().top;
+    if (top < window.innerHeight - 100) {
+      section.classList.add('visible');
+    }
+  });
+}
+
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+
+// Carbon Calculator
+document.getElementById('carbonForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const carbonPerUnit = parseFloat(document.getElementById('product').value);
+  const quantity = parseInt(document.getElementById('quantity').value);
+  const result = (carbonPerUnit * quantity).toFixed(2);
+  document.getElementById('result').textContent = `Estimated: ${result} kg CO2e/month`;
+});
+
+// Contact Form
+document.getElementById('contactForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const name = document.getElementById('name').value;
+  document.getElementById('contactForm').innerHTML = `<p>Thanks, ${name}! We'll contact you soon.</p>`;
+});

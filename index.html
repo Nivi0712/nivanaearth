@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nivana Earth - Eco Store</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: #f5fff5;
+      color: #2e5e2e;
+      line-height: 1.6;
+    }
+
+    nav {
+      background-color: #b0eacb;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav h1 {
+      font-size: 1.5rem;
+      color: #145c2e;
+    }
+
+    #navbar {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+    }
+
+    #navbar li a {
+      text-decoration: none;
+      color: #145c2e;
+      font-weight: bold;
+    }
+
+    .section {
+      padding: 4rem 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #226b36;
+      margin-bottom: 1rem;
+    }
+
+    p, li {
+      margin-bottom: 0.5rem;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    input, select, textarea {
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    footer {
+      background-color: #b0eacb;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+    }
+
+    .animate {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease-out;
+    }
+
+    .animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="header">
+    <h1>Nivana Earth</h1>
+    <ul id="navbar">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#calculator">Calculator</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="hero" class="animate section">
+    <img src="eco.jpg" alt="Eco-friendly banner" style="width: 100%; border-radius: 10px; margin-bottom: 1rem;" />
+    <h2>Welcome to Nivana Earth</h2>
+    <p>Your sustainable choice for everyday products that meet eco-friendly values.</p>
+    <button>Shop Now</button>
+  </section>
+
+  <section id="about" class="animate section">
+    <h2>About Us</h2>
+    <p>We started Nivana Earth with a simple idea — "what if your daily bath routine could be good for you and the planet?". That thought led us to create a range of eco-friendly bath products made with clean ingredients and zero plastic. From gentle soaps and solid shampoos to biodegradable toothbrushes, everything we offer is designed to reduce waste without compromising quality. We're not perfect, but we're passionate about making small changes that add up. Thanks for being on this journey with us. Consciously crafted for you and our planet</p>
+  </section>
+
+  <section id="products" class="animate section">
+    <h2>Best Sellers</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
+      <div style="text-align: center;">
+        <img src="brush.jfif" alt="Eco Toothbrush" style="width: 150px; border-radius: 10px;" />
+        <p>Toothbrush - $5</p>
+      </div>
+      <div style="text-align: center;">
+        <img src="soap.jfif" alt="Natural Soap" style="width: 150px; border-radius: 10px;" />
+        <p>Soap - $7</p>
+      </div>
+      <div style="text-align: center;">
+        <img src="shampoo.jfif" alt="Organic Shampoo" style="width: 150px; border-radius: 10px;" />
+        <p>Shampoo - $9</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="calculator" class="animate section">
+    <h2>Carbon Footprint Calculator</h2>
+    <form id="carbonForm">
+      <label for="product">Choose Product:</label>
+      <select id="product">
+        <option value="0.05">Toothbrush</option>
+        <option value="0.3">Shampoo</option>
+        <option value="0.15">Soap</option>
+      </select>
+      <label for="quantity">Quantity per Month:</label>
+      <input type="number" id="quantity" min="1" value="1" required />
+      <button type="submit">Calculate</button>
+    </form>
+    <p id="result">Result will appear here...</p>
+  </section>
+
+  <section id="contact" class="animate section">
+    <h2>Contact Us</h2>
+    <form id="contactForm">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <textarea id="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 Nivana Earth by Nivedita Byna</p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.animate').forEach(section => {
+      observer.observe(section);
+    });
+
+    document.getElementById("carbonForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const product = parseFloat(document.getElementById("product").value);
+      const quantity = parseInt(document.getElementById("quantity").value);
+      const result = product * quantity;
+      document.getElementById("result").textContent = `Estimated Carbon Footprint: ${result.toFixed(2)} kg CO₂/month`;
+    });
+
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("Thank you for your message! We'll be in touch soon.");
+    });
+  </script>
+
+</body>
+</html>
